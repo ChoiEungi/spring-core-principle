@@ -7,9 +7,14 @@ import springcore.principle.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderSevice{
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
-    // no speficfic class
-    private DiscountPolicy discountPolicy;
+    // interface에만 의존
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {

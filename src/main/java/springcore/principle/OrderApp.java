@@ -12,8 +12,10 @@ import springcore.principle.order.OrderSevice;
 public class OrderApp {
 
     public static void main(String[] args) {
-        MemberService memberService = new MemberServieImpl();
-        OrderSevice orderSevice = new OrderServiceImpl();
+        AppConfig appConfig = new AppConfig();
+
+        MemberService memberService = appConfig.memberService();
+        OrderSevice orderSevice = appConfig.OrderService();
 
         Long memberId = 1L;
         Member member = new Member(memberId, "memberA", Grade.VIP);

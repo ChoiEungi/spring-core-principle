@@ -2,6 +2,7 @@ package springcore.principle;
 
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import springcore.principle.member.Grade;
 import springcore.principle.member.Member;
@@ -10,7 +11,13 @@ import springcore.principle.member.MemberServieImpl;
 
 public class MemberServiceTest {
 
-    MemberService memberService = new MemberServieImpl();
+    MemberService memberService;
+
+    @BeforeEach
+    public void beforeEach(){
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+    }
 
     @Test
     void join(){
