@@ -15,7 +15,7 @@ public class OrderApp {
         AppConfig appConfig = new AppConfig();
 
         MemberService memberService = appConfig.memberService();
-        OrderSevice orderSevice = appConfig.OrderService();
+        OrderSevice orderSevice = appConfig.orderService();
 
         Long memberId = 1L;
         Member member = new Member(memberId, "memberA", Grade.VIP);
