@@ -1,31 +1,36 @@
 package springcore.principle;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import springcore.principle.discount.DiscountPolicy;
-import springcore.principle.discount.FixDiscountPolicy;
+import springcore.principle.discount.RateDiscountPolicy;
 import springcore.principle.member.MemberService;
 import springcore.principle.member.MemberServieImpl;
 import springcore.principle.member.MemoryMemberRepository;
 import springcore.principle.order.OrderServiceImpl;
 import springcore.principle.order.OrderSevice;
 
+@Configuration
 public class AppConfig {
 
-    // 1. create memoryMemberRepository
-    // 2. inject memoryMemberRepository into MemberServiceImpl
+    @Bean
     public MemberService memberService() {
         return new MemberServieImpl(memberRepository());
     }
 
-    private MemoryMemberRepository memberRepository() {
+    @Bean
+    public MemoryMemberRepository memberRepository() {
         return new MemoryMemberRepository();
     }
 
+    @Bean
     public OrderSevice orderService(){
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
+    @Bean
     public DiscountPolicy discountPolicy(){
-        return new FixDiscountPolicy();
+        return new RateDiscountPolicy();
     }
 
 }
